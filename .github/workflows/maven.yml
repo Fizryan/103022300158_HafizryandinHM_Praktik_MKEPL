@@ -28,6 +28,11 @@ jobs:
       - name: veryfy settings.xml exists in .m2 directory
         run: ls -al ~/.m2
 
+      - name: Deploy to GitHub Packages
+        run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+
       - name: Build, test, and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
